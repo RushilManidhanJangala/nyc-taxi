@@ -1,0 +1,38 @@
+[2026-06-18T19:25:25.054+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2026-06-18T19:25:25.110+0000] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: nyc_taxi_pipeline.transform_data manual__2026-06-18T19:25:17.408356+00:00 [queued]>
+[2026-06-18T19:25:25.134+0000] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: nyc_taxi_pipeline.transform_data manual__2026-06-18T19:25:17.408356+00:00 [queued]>
+[2026-06-18T19:25:25.136+0000] {taskinstance.py:2867} INFO - Starting attempt 1 of 1
+[2026-06-18T19:25:25.177+0000] {taskinstance.py:2890} INFO - Executing <Task(BashOperator): transform_data> on 2026-06-18 19:25:17.408356+00:00
+[2026-06-18T19:25:25.194+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:70: DeprecationWarning: This process (pid=228) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  pid = os.fork()
+
+[2026-06-18T19:25:25.200+0000] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', 'nyc_taxi_pipeline', 'transform_data', 'manual__2026-06-18T19:25:17.408356+00:00', '--job-id', '41', '--raw', '--subdir', 'DAGS_FOLDER/nyc_taxi_pipeline.py', '--cfg-path', '/tmp/tmp6wwal2gg']
+[2026-06-18T19:25:25.202+0000] {standard_task_runner.py:72} INFO - Started process 230 to run task
+[2026-06-18T19:25:25.204+0000] {standard_task_runner.py:105} INFO - Job 41: Subtask transform_data
+[2026-06-18T19:25:26.279+0000] {task_command.py:467} INFO - Running <TaskInstance: nyc_taxi_pipeline.transform_data manual__2026-06-18T19:25:17.408356+00:00 [running]> on host 018aa393e34b
+[2026-06-18T19:25:26.489+0000] {taskinstance.py:3134} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='rushil' AIRFLOW_CTX_DAG_ID='nyc_taxi_pipeline' AIRFLOW_CTX_TASK_ID='transform_data' AIRFLOW_CTX_EXECUTION_DATE='2026-06-18T19:25:17.408356+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2026-06-18T19:25:17.408356+00:00'
+[2026-06-18T19:25:26.491+0000] {logging_mixin.py:190} INFO - Task instance is in running state
+[2026-06-18T19:25:26.493+0000] {logging_mixin.py:190} INFO -  Previous state of the Task instance: queued
+[2026-06-18T19:25:26.495+0000] {logging_mixin.py:190} INFO - Current task name:transform_data state:running start_date:2026-06-18 19:25:25.113578+00:00
+[2026-06-18T19:25:26.497+0000] {logging_mixin.py:190} INFO - Dag name:nyc_taxi_pipeline and current dag run status:running
+[2026-06-18T19:25:26.499+0000] {taskinstance.py:732} INFO - ::endgroup::
+[2026-06-18T19:25:26.501+0000] {subprocess.py:78} INFO - Tmp dir root location: /tmp
+[2026-06-18T19:25:26.504+0000] {subprocess.py:88} INFO - Running command: ['/usr/bin/bash', '-c', 'python /opt/***/project/etl/transform.py']
+[2026-06-18T19:25:26.532+0000] {subprocess.py:99} INFO - Output:
+[2026-06-18T19:25:57.156+0000] {subprocess.py:106} INFO - Original Rows: 3475226
+[2026-06-18T19:25:57.174+0000] {subprocess.py:106} INFO - Rows After Cleaning: 3253864
+[2026-06-18T19:25:57.187+0000] {subprocess.py:106} INFO - 
+[2026-06-18T19:25:57.194+0000] {subprocess.py:106} INFO - New Columns Added:
+[2026-06-18T19:25:57.200+0000] {subprocess.py:106} INFO - ['trip_duration_min', 'pickup_hour', 'pickup_day', 'pickup_month']
+[2026-06-18T19:25:57.206+0000] {subprocess.py:106} INFO - 
+[2026-06-18T19:25:57.219+0000] {subprocess.py:106} INFO - Processed dataset saved.
+[2026-06-18T19:25:58.139+0000] {subprocess.py:110} INFO - Command exited with return code 0
+[2026-06-18T19:25:58.235+0000] {taskinstance.py:341} INFO - ::group::Post task execution logs
+[2026-06-18T19:25:58.241+0000] {taskinstance.py:353} INFO - Marking task as SUCCESS. dag_id=nyc_taxi_pipeline, task_id=transform_data, run_id=manual__2026-06-18T19:25:17.408356+00:00, execution_date=20260618T192517, start_date=20260618T192525, end_date=20260618T192558
+[2026-06-18T19:25:58.340+0000] {logging_mixin.py:190} INFO - Task instance in success state
+[2026-06-18T19:25:58.342+0000] {logging_mixin.py:190} INFO -  Previous state of the Task instance: running
+[2026-06-18T19:25:58.345+0000] {logging_mixin.py:190} INFO - Dag name:nyc_taxi_pipeline queued_at:2026-06-18 19:25:17.466567+00:00
+[2026-06-18T19:25:58.348+0000] {logging_mixin.py:190} INFO - Task hostname:018aa393e34b operator:BashOperator
+[2026-06-18T19:25:58.431+0000] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2026-06-18T19:25:58.537+0000] {taskinstance.py:3901} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2026-06-18T19:25:58.542+0000] {local_task_job_runner.py:245} INFO - ::endgroup::
