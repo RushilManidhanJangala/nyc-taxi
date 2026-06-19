@@ -1,27 +1,36 @@
 import pandas as pd
 import psycopg2
 
-# Read CSV
-df = pd.read_csv("data/hourly_stats.csv")
+# Read hourly stats CSV
+df = pd.read_csv(
+    "/opt/airflow/project/data/hourly_stats.csv"
+)
 
-# Connect to PostgreSQL
+# Connect to PostgreSQL container
 conn = psycopg2.connect(
-    host="localhost",
+    host="postgres",
     database="nyc_taxi_db",
-    user="postgres",
-    password="postgres"
+    user="airflow",
+    password="airflow"
 )
 
 cursor = conn.cursor()
 
-# Clear old data
+# Clear existing rows
 cursor.execute("DELETE FROM hourly_stats")
 
-# Insert rows
+# Insert data row by row
 for _, row in df.iterrows():
     cursor.execute(
         """
         INSERT INTO hourly_stats
+        (
+            pickup_hour,
+            total_trips,
+            avg_fare,
+            avg_distance,
+            total_revenue
+        )
         VALUES (%s, %s, %s, %s, %s)
         """,
         (
@@ -33,9 +42,11 @@ for _, row in df.iterrows():
         )
     )
 
+# Commit changes
 conn.commit()
 
 print(f"{len(df)} rows inserted successfully.")
 
+# Close connections
 cursor.close()
 conn.close()

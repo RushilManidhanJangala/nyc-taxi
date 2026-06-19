@@ -2,7 +2,7 @@ import pandas as pd
 
 # Load processed data
 df = pd.read_parquet(
-    "data/processed_taxi_data.parquet"
+    "/opt/airflow/project/data/processed_taxi_data.parquet"
 )
 
 # Aggregate metrics by pickup hour
@@ -18,27 +18,15 @@ hourly_stats = (
 )
 
 # Round values
-hourly_stats["avg_fare"] = (
-    hourly_stats["avg_fare"]
-    .round(2)
-)
-
-hourly_stats["avg_distance"] = (
-    hourly_stats["avg_distance"]
-    .round(2)
-)
-
-hourly_stats["total_revenue"] = (
-    hourly_stats["total_revenue"]
-    .round(2)
-)
-
-print(hourly_stats)
+hourly_stats["avg_fare"] = hourly_stats["avg_fare"].round(2)
+hourly_stats["avg_distance"] = hourly_stats["avg_distance"].round(2)
+hourly_stats["total_revenue"] = hourly_stats["total_revenue"].round(2)
 
 # Save results
 hourly_stats.to_csv(
-    "data/hourly_stats.csv",
+    "/opt/airflow/project/data/hourly_stats.csv",
     index=False
 )
 
-print("\nHourly analytics saved.")
+print(hourly_stats.head())
+print("\nHourly analytics saved successfully.")

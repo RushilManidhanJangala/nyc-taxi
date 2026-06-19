@@ -2,7 +2,7 @@ import pandas as pd
 
 # Load dataset
 df = pd.read_parquet(
-    "data/yellow_tripdata_2025-01.parquet"
+    "/opt/airflow/project/data/yellow_tripdata_2025-01.parquet"
 )
 
 print(f"Original Rows: {len(df)}")
@@ -49,8 +49,7 @@ print([
 
 # Save processed data
 df.to_parquet(
-    "data/processed_taxi_data.parquet",
-    index=False
+    "/opt/airflow/project/data/processed_taxi_data.parquet"
 )
 
 print("\nProcessed dataset saved.")
